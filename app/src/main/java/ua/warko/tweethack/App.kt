@@ -10,6 +10,8 @@ import timber.log.Timber
 import ua.warko.tweethack.BuildConfig
 import ua.warko.tweethack.CrashlyticsReportingTree
 
+
+
 class App : Application() {
 
     override fun onCreate() {
@@ -21,6 +23,9 @@ class App : Application() {
             Fabric.with(this, Crashlytics())
             Timber.plant(CrashlyticsReportingTree())
         }
+
+//        val authConfig = TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET)
+//        Fabric.with(this, Twitter(authConfig))
 
         setupRealmDefaultInstance(this)
     }
