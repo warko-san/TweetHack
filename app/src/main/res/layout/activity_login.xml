@@ -25,11 +25,11 @@
             android:src="@drawable/bg_login"/>
 
         <com.twitter.sdk.android.core.identity.TwitterLoginButton
+            android:id="@+id/btnLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="50dp"
-            android:onClick="@{() -> presenter.login()}"/>
+            android:layout_marginTop="50dp"/>
 
     </FrameLayout>
 </layout>
