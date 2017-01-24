@@ -9,7 +9,7 @@ import io.fabric.sdk.android.Fabric
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import timber.log.Timber
-
+import ua.warko.tweethack.util.CrashlyticsReportingTree
 
 
 class App : Application() {

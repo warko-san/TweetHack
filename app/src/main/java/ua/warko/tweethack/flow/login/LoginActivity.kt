@@ -32,7 +32,8 @@ class LoginActivity : BaseActivity<LoginPresenter, ActivityLoginBinding>(), Logi
 
             override fun success(result: Result<TwitterSession>) {
                 Twitter.getInstance().core.sessionManager.activeSession
-                val session: TwitterSession = result.data
+
+
                 startActivity(TweetActivity.newIntent(this@LoginActivity))
             }
 

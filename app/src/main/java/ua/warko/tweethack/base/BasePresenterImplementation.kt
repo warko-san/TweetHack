@@ -3,6 +3,7 @@ package com.yalantis.base
 import android.support.annotation.StringRes
 import rx.Subscription
 import rx.internal.util.SubscriptionList
+import ua.warko.tweethack.manager.SharedPrefManager
 
 /**
  * Created by voltazor on 20/03/16.
@@ -11,6 +12,7 @@ abstract class BasePresenterImplementation<V : BaseView> : BasePresenter {
 
     protected var mView: V? = null
     private val mSubscriptionList = SubscriptionList()
+    protected lateinit var mSpManager: SharedPrefManager
 
     /**
      * Attach view to presenter, also here we have subscription
@@ -22,6 +24,7 @@ abstract class BasePresenterImplementation<V : BaseView> : BasePresenter {
     @Suppress("UNCHECKED_CAST")
     override fun attachView(view: BaseView) {
         mView = view as V
+        mSpManager = SharedPrefManager.getInstance(view.getContext())
     }
 
     /**
