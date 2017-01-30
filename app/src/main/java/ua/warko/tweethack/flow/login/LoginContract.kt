@@ -10,13 +10,14 @@ class LoginContract {
 
     interface Presenter : BasePresenter {
 
-        fun login()
+        fun saveUserLoggedIn()
+
+        fun checkIsUserLoggedIn(): Boolean
 
     }
 
     interface View : BaseView {
 
-        fun startTweetActivity()
 
     }
 }

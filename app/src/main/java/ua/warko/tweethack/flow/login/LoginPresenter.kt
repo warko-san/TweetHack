@@ -7,8 +7,11 @@ import com.yalantis.base.BasePresenterImplementation
  */
 class LoginPresenter : BasePresenterImplementation<LoginContract.View>(), LoginContract.Presenter {
 
+    override fun saveUserLoggedIn() {
+        mSpManager.setIsUserLoggedIn(true)
+    }
 
-    override fun login() {
-
+    override fun checkIsUserLoggedIn(): Boolean {
+        return mSpManager.isUserLoggedIn
     }
 }

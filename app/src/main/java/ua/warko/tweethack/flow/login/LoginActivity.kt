@@ -24,16 +24,20 @@ class LoginActivity : BaseActivity<LoginPresenter, ActivityLoginBinding>(), Logi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        //TODO: move this shit to splash later
+        if (presenter.checkIsUserLoggedIn()) {
+            startActivity(TweetActivity.newIntent(this@LoginActivity))
+        }
 
+        initLogin()
+    }
 
-
-
-            binding.btnLogin.callback = (object : Callback<TwitterSession>() {
+    private fun initLogin() {
+        binding.btnLogin.callback = (object : Callback<TwitterSession>() {
 
             override fun success(result: Result<TwitterSession>) {
+                presenter.saveUserLoggedIn()
                 Twitter.getInstance().core.sessionManager.activeSession
-
-
                 startActivity(TweetActivity.newIntent(this@LoginActivity))
             }
 
@@ -46,15 +50,10 @@ class LoginActivity : BaseActivity<LoginPresenter, ActivityLoginBinding>(), Logi
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         binding.btnLogin.onActivityResult(requestCode, resultCode, data)
-
     }
 
     override fun getContext(): Context {
         return this@LoginActivity
-    }
-
-    override fun startTweetActivity() {
-
     }
 
 }

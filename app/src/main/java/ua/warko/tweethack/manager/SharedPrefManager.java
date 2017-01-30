@@ -16,12 +16,14 @@ public class SharedPrefManager implements Manager {
 
     private static final String NAME = "sharedPrefs";
     private static final String API_KEY = "api_key";
+    private static final String LOGIN = "login";
     private volatile static SharedPrefManager sInstance;
     private SharedPreferences sp;
 
     private Set<CachedValue> cachedValues;
 
     private CachedValue<String> apiKey;
+    private CachedValue<Boolean> isUserLoggedIn;
 
     private SharedPrefManager(Context context) {
         sp = context.getSharedPreferences(NAME, Context.MODE_PRIVATE);
@@ -29,6 +31,7 @@ public class SharedPrefManager implements Manager {
         cachedValues = new HashSet<>();
 
         cachedValues.add(apiKey = new CachedValue<>(API_KEY, String.class));
+        cachedValues.add(isUserLoggedIn = new CachedValue<>(LOGIN, Boolean.class));
     }
 
     public synchronized static SharedPrefManager getInstance(Context context) {
@@ -53,4 +56,11 @@ public class SharedPrefManager implements Manager {
         }
     }
 
+    public boolean isUserLoggedIn() {
+        return isUserLoggedIn.getValue();
+    }
+
+    public void setIsUserLoggedIn(boolean isUserLoggedIn) {
+        this.isUserLoggedIn.setValue(isUserLoggedIn);
+    }
 }
