@@ -1,4 +1,4 @@
-package ua.warko.tweethack;
+package ua.warko.tweethack.util;
 
 import android.util.Log;
 
