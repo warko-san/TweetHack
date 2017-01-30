@@ -31,7 +31,7 @@ public class SharedPrefManager implements Manager {
         cachedValues = new HashSet<>();
 
         cachedValues.add(apiKey = new CachedValue<>(API_KEY, String.class));
-        cachedValues.add(isUserLoggedIn = new CachedValue<>(LOGIN, Boolean.class));
+        cachedValues.add(isUserLoggedIn = new CachedValue<>(LOGIN, false, Boolean.class));
     }
 
     public synchronized static SharedPrefManager getInstance(Context context) {

@@ -3,10 +3,14 @@ package ua.warko.tweethack.flow.composeTweets
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import com.yalantis.base.BaseActivity
 import ua.warko.tweethack.R
+import ua.warko.tweethack.databinding.ActivityTweetBinding
 
-class TweetActivity : AppCompatActivity() {
+class TweetActivity : BaseActivity<TweetPresenter, ActivityTweetBinding>(), TweetContract.View {
+
+    override val presenter: TweetPresenter = TweetPresenter()
+    override val layoutResourceId: Int = R.layout.activity_tweet
 
     companion object {
         fun newIntent(context: Context): Intent {
@@ -14,9 +18,12 @@ class TweetActivity : AppCompatActivity() {
         }
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_tweet)
+        binding.btnTweet.setOnClickListener { presenter.calculateAndSendTweets(binding.etTweet.text.toString()) }
+    }
+
+    override fun getContext(): Context {
+        return this@TweetActivity
     }
 }

@@ -16,10 +16,8 @@ import ua.warko.tweethack.flow.composeTweets.TweetActivity
 
 class LoginActivity : BaseActivity<LoginPresenter, ActivityLoginBinding>(), LoginContract.View {
 
-    override val presenter: LoginPresenter
-        get() = LoginPresenter()
-    override val layoutResourceId: Int
-        get() = R.layout.activity_login
+    override val presenter: LoginPresenter = LoginPresenter()
+    override val layoutResourceId: Int = R.layout.activity_login
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
