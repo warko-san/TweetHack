@@ -12,24 +12,32 @@ class TweetPresenter : BasePresenterImplementation<TweetContract.View>(), TweetC
 
     override fun calculateAndSendTweets(text: String) {
         val stringBuilder = StringBuilder(text)
-        calculateTweets(stringBuilder)
+        fillTweetList(stringBuilder)
+        tweetList.reverse()
+        tweetList.forEach { sendTweet(it) }
+    }
+
+    private fun  sendTweet(tweet: String) {
 
     }
 
-    private fun calculateTweets(text: StringBuilder) {
-        if (text.length > 140) {
-            for (i in 139..120) {
-                if (text[i].equals(" ")) {
-                    var newText: StringBuilder = StringBuilder()
-                    val tweet = text.substring(0, i)
-                    tweetList.add(tweet)
-                    text.delete(0, i)
-                    newText = text
+    private fun fillTweetList(text: StringBuilder) {
+        val tweetCount: Int = Math.ceil(text.length.toDouble() / 140).toInt()
+
+        for (j in 1..tweetCount) {
+            if (text.length > 125) {
+                for (i in 140 downTo 125) {
+                    if (text[i] == ' ') {
+                        val tweet = text.substring(0, i)
+                        tweetList.add(tweet)
+                        text.delete(0, i)
+                        break
+                    }
                 }
+
+            } else {
+                tweetList.add(text.toString())
             }
-            calculateTweets(newText)
-        } else {
-            tweetList.add(text.toString())
         }
     }
 }
