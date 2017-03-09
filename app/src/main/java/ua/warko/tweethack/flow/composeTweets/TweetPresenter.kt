@@ -36,6 +36,7 @@ class TweetPresenter : BasePresenterImplementation<TweetContract.View>(), TweetC
     }
 
     private fun fillTweetList(text: StringBuilder) {
+        tweetList.clear()
         val tweetCount: Int = Math.ceil(text.length.toDouble() / 140).toInt()
 
         for (j in 1..tweetCount) {

@@ -3,7 +3,6 @@ package ua.warko.tweethack.flow.login
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import com.twitter.sdk.android.Twitter
 import com.twitter.sdk.android.core.Callback
 import com.twitter.sdk.android.core.Result
 import com.twitter.sdk.android.core.TwitterException
@@ -35,7 +34,6 @@ class LoginActivity : BaseActivity<LoginPresenter, ActivityLoginBinding>(), Logi
 
             override fun success(result: Result<TwitterSession>) {
                 presenter.saveUserLoggedIn()
-                Twitter.getInstance().core.sessionManager.activeSession
                 startActivity(TweetActivity.newIntent(this@LoginActivity))
             }
 
