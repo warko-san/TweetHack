@@ -14,8 +14,10 @@ import ua.warko.tweethack.util.CrashlyticsReportingTree
 
 class App : Application() {
 
-    private val TWITTER_KEY = "Mnz427uXkgAFNsQAzDamaT7jJ"
-    private val TWITTER_SECRET = "yFi6HSrOJTQLOGo72sA8mx2DsEmpXt0O1T9t9wv3CXWkaK7n1Y"
+    companion object {
+        val TWITTER_KEY = "Mnz427uXkgAFNsQAzDamaT7jJ"
+        val TWITTER_SECRET = "yFi6HSrOJTQLOGo72sA8mx2DsEmpXt0O1T9t9wv3CXWkaK7n1Y"
+    }
 
     override fun onCreate() {
         super.onCreate()

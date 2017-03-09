@@ -3,6 +3,8 @@ package com.yalantis.base
 import android.support.annotation.StringRes
 import rx.Subscription
 import rx.internal.util.SubscriptionList
+import ua.warko.tweethack.api.RetrofitClient
+import ua.warko.tweethack.api.TwitterService
 import ua.warko.tweethack.manager.SharedPrefManager
 
 /**
@@ -13,6 +15,7 @@ abstract class BasePresenterImplementation<V : BaseView> : BasePresenter {
     protected var mView: V? = null
     private val mSubscriptionList = SubscriptionList()
     protected lateinit var mSpManager: SharedPrefManager
+    protected lateinit var twitter: TwitterService
 
     /**
      * Attach view to presenter, also here we have subscription
@@ -25,6 +28,7 @@ abstract class BasePresenterImplementation<V : BaseView> : BasePresenter {
     override fun attachView(view: BaseView) {
         mView = view as V
         mSpManager = SharedPrefManager.getInstance(view.getContext())
+        twitter = RetrofitClient.getTwitterService()
     }
 
     /**

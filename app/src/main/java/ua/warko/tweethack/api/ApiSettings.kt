@@ -13,9 +13,7 @@ object ApiSettings {
 
     const val STATUSES_PATH = "statuses/"
 
-    const val STATUS = "status="
-
-    const val UPDATE = "update"
+    const val UPDATE = "update.json"
 
     const val UPDATE_STATUS = STATUSES_PATH + UPDATE
 }

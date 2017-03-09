@@ -56,6 +56,11 @@ public class SharedPrefManager implements Manager {
         }
     }
 
+    @Override
+    public void init() {
+
+    }
+
     public boolean isUserLoggedIn() {
         return isUserLoggedIn.getValue();
     }

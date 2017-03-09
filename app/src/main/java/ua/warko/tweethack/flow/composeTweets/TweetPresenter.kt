@@ -1,5 +1,10 @@
 package ua.warko.tweethack.flow.composeTweets
 
+import android.widget.Toast
+import com.twitter.sdk.android.core.Callback
+import com.twitter.sdk.android.core.Result
+import com.twitter.sdk.android.core.TwitterException
+import com.twitter.sdk.android.core.models.Tweet
 import com.yalantis.base.BasePresenterImplementation
 import java.util.*
 
@@ -17,7 +22,16 @@ class TweetPresenter : BasePresenterImplementation<TweetContract.View>(), TweetC
         tweetList.forEach { sendTweet(it) }
     }
 
-    private fun  sendTweet(tweet: String) {
+    private fun sendTweet(tweet: String) {
+        twitter.updateStatus(tweet).enqueue(object : Callback<Tweet>() {
+            override fun success(result: Result<Tweet>?) {
+                Toast.makeText(mView?.getContext(), "Tweeted", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun failure(exception: TwitterException?) {
+                Toast.makeText(mView?.getContext(), "Failed", Toast.LENGTH_SHORT).show()
+            }
+        })
 
     }
 

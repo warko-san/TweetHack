@@ -2,12 +2,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-        <variable
-            name="presenter"
-            type="ua.warko.tweethack.flow.composeTweets.TweetPresenter"/>
-    </data>
-
 <RelativeLayout
 
     android:id="@+id/activity_tweet"

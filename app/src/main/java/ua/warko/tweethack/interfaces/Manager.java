@@ -4,4 +4,6 @@ public interface Manager {
 
     void clear();
 
+    void init();
+
 }
