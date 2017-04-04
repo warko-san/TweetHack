@@ -14,18 +14,24 @@ import java.util.*
 class TweetPresenter : BasePresenterImplementation<TweetContract.View>(), TweetContract.Presenter {
 
     private var tweetList = ArrayList<String>()
+    private var index = 0
 
     override fun calculateAndSendTweets(text: String) {
         val stringBuilder = StringBuilder(text)
         fillTweetList(stringBuilder)
         tweetList.reverse()
-        tweetList.forEach { sendTweet(it) }
+        sendTweet(tweetList[index])
     }
 
     private fun sendTweet(tweet: String) {
         twitter.updateStatus(tweet).enqueue(object : Callback<Tweet>() {
+
             override fun success(result: Result<Tweet>?) {
                 Toast.makeText(mView?.getContext(), "Tweeted", Toast.LENGTH_SHORT).show()
+                ++index
+                if (index < tweetList.size) {
+                    sendTweet(tweetList[index])
+                }
             }
 
             override fun failure(exception: TwitterException?) {
