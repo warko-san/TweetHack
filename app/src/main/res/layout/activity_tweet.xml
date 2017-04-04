@@ -2,54 +2,56 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools">
 
-<RelativeLayout
+    <RelativeLayout
 
-    android:id="@+id/activity_tweet"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/white"
-    tools:context="ua.warko.tweethack.flow.composeTweets.TweetActivity">
-
-    <include layout="@layout/toolbar"/>
-
-    <TextView
-        android:id="@+id/title"
-        android:layout_centerHorizontal="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
-        android:text="Enter your text here:"/>
-
-    <EditText
-        android:id="@+id/et_tweet"
+        android:id="@+id/activity_tweet"
         android:layout_width="match_parent"
-        android:layout_below="@id/title"
-        android:layout_marginTop="16dp"
-        android:layout_margin="8dp"
-        android:textColor="@android:color/black"
-        android:layout_height="250dp"/>
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        tools:context="ua.warko.tweethack.flow.composeTweets.TweetActivity">
 
-    <Button
-        android:id="@+id/btn_clear"
-        android:layout_below="@id/et_tweet"
-        android:background="@color/colorPrimary"
-        android:layout_centerHorizontal="true"
-        android:text="Clear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar"/>
 
-    <Button
-        android:id="@+id/btn_tweet"
-        android:layout_below="@id/et_tweet"
-        android:background="@color/colorPrimary"
-        android:layout_toEndOf="@id/btn_clear"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="32dp"
-        android:text="Tweet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="70dp"
+            android:text="@string/enter_your_text_here"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"/>
 
-</RelativeLayout>
-    </layout>
+        <EditText
+            android:id="@+id/et_tweet"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_below="@id/title"
+            android:layout_margin="8dp"
+            android:layout_marginTop="16dp"
+            android:textColor="@android:color/black"/>
+
+        <Button
+            android:id="@+id/btn_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/et_tweet"
+            android:layout_centerHorizontal="true"
+            android:background="@color/colorPrimary"
+            android:text="@string/clear"/>
+
+        <Button
+            android:id="@+id/btn_tweet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/et_tweet"
+            android:layout_marginEnd="32dp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@id/btn_clear"
+            android:background="@color/colorPrimary"
+            android:text="@string/tweet"/>
+
+    </RelativeLayout>
+</layout>

@@ -58,9 +58,8 @@ abstract class BaseActivity<out T : BasePresenter, K : ViewDataBinding> : AppCom
     }
 
     override fun showProgress() {
-        mProgressDialog?.let {
-            mProgressDialog = ProgressDialogFragment.newInstance()
-        }
+        mProgressDialog = ProgressDialogFragment.newInstance()
+
         if (!mProgressDialog?.isAdded!!) {
             mProgressDialog?.show(supportFragmentManager)
         }

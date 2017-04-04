@@ -20,6 +20,7 @@ class TweetPresenter : BasePresenterImplementation<TweetContract.View>(), TweetC
         val stringBuilder = StringBuilder(text)
         fillTweetList(stringBuilder)
         tweetList.reverse()
+        mView?.showProgress()
         sendTweet(tweetList[index])
     }
 
@@ -27,15 +28,18 @@ class TweetPresenter : BasePresenterImplementation<TweetContract.View>(), TweetC
         twitter.updateStatus(tweet).enqueue(object : Callback<Tweet>() {
 
             override fun success(result: Result<Tweet>?) {
-                Toast.makeText(mView?.getContext(), "Tweeted", Toast.LENGTH_SHORT).show()
                 ++index
                 if (index < tweetList.size) {
                     sendTweet(tweetList[index])
+                } else {
+                    mView?.hideProgress()
+                    mView?.clearUi()
                 }
             }
 
             override fun failure(exception: TwitterException?) {
                 Toast.makeText(mView?.getContext(), "Failed", Toast.LENGTH_SHORT).show()
+                mView?.hideProgress()
             }
         })
 
@@ -44,20 +48,29 @@ class TweetPresenter : BasePresenterImplementation<TweetContract.View>(), TweetC
     private fun fillTweetList(text: StringBuilder) {
         tweetList.clear()
         val tweetCount: Int = Math.ceil(text.length.toDouble() / 140).toInt()
+        var isBeginning = true
 
         for (j in 1..tweetCount) {
-            if (text.length > 125) {
-                for (i in 140 downTo 125) {
+            if (text.length > 140) {
+                for (i in 134 downTo 125) {
                     if (text[i] == ' ') {
-                        val tweet = text.substring(0, i)
+                        var tweet = text.substring(0, i)
+                        if (tweet.length < 134 && !isBeginning) {
+                            tweet = "...$tweet..."
+                        } else {
+                            tweet += "..."
+                        }
                         tweetList.add(tweet)
                         text.delete(0, i)
+                        isBeginning = false
                         break
                     }
                 }
 
             } else {
-                tweetList.add(text.toString())
+                var lastPart = text.toString()
+                lastPart = "...$lastPart"
+                tweetList.add(lastPart)
             }
         }
     }

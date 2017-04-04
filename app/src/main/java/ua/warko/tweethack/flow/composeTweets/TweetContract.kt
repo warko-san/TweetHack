@@ -16,6 +16,7 @@ class TweetContract {
 
     interface View : BaseView {
 
+        fun clearUi()
 
     }
 }

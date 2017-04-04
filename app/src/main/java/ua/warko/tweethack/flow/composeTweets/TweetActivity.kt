@@ -20,7 +20,13 @@ class TweetActivity : BaseActivity<TweetPresenter, ActivityTweetBinding>(), Twee
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding.toolbar.toolbar.title = "Tweet Composer"
         binding.btnTweet.setOnClickListener { presenter.calculateAndSendTweets(binding.etTweet.text.toString()) }
+        binding.btnClear.setOnClickListener { clearUi() }
+    }
+
+    override fun clearUi() {
+        binding.etTweet.text.clear()
     }
 
     override fun getContext(): Context {
